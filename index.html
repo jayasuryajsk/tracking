@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Hire Tracking Workflow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .diagram-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .info-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .tracking-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .level-card {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        .level-card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Equipment Hire Fleet Tracking System</h1>
+    
+    <div class="diagram-container">
+        <h2>Workflow Process</h2>
+        <div class="mermaid">
+            flowchart TD
+                A[Start] --> B[Create Booking / Job]
+                B --> C[Hire OUT]
+                C --> D{Asset Type?}
+                D -->|Vehicles/Machines| E1[GPS Auto-tracks]
+                D -->|Tools/Small Items| E2[Scan/Tap NFC/QR]
+                E1 --> F[Photos & Checklist]
+                E2 --> F
+                F --> G[Record OUT Movement]
+                G --> H[Asset In Use]
+                H --> I[GPS logs kms/hours automatically]
+                I --> J[Hire IN]
+                J --> K{Check-in Process}
+                K -->|Vehicles| L1[Auto-report kms]
+                K -->|All Items| L2[Scan/Tap Assets Back]
+                L1 --> M[Enter Fuel/Damage if needed]
+                L2 --> M
+                M --> N[Record IN Movement]
+                N --> O[Close Job & Send to Invoicing]
+                O --> P[Nightly Jobs]
+                P --> Q[Daily KM Report]
+                P --> R[Service Alerts]
+                Q --> S[End]
+                R --> S
+                
+                style A fill:#4CAF50,color:#fff
+                style S fill:#4CAF50,color:#fff
+                style D fill:#FFC107,color:#000
+                style K fill:#FFC107,color:#000
+                style P fill:#2196F3,color:#fff
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <h2>Three-Tier Tracking System</h2>
+        <div class="tracking-levels">
+            <div class="level-card">
+                <h3>🚛 Level 1: Vehicles & Major Machines</h3>
+                <p><strong>Technology:</strong> Live GPS boxes wired to power</p>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Real-time location on map</li>
+                    <li>Automatic daily kilometer tracking</li>
+                    <li>Service alerts based on usage</li>
+                </ul>
+            </div>
+            
+            <div class="level-card">
+                <h3>🚜 Level 2: Trailers & Unpowered Gear</h3>
+                <p><strong>Technology:</strong> Solar/battery GPS boxes</p>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Location updates when moved</li>
+                    <li>Last known position tracking</li>
+                    <li>Battery life monitoring</li>
+                </ul>
+            </div>
+            
+            <div class="level-card">
+                <h3>🔧 Level 3: Hand Tools & Attachments</h3>
+                <p><strong>Technology:</strong> NFC/QR stickers</p>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Manual scan on hire out/in</li>
+                    <li>Low-cost tracking solution</li>
+                    <li>Photo documentation support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
